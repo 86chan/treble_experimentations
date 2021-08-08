@@ -4,6 +4,7 @@ set -e
 
 patches="$(readlink -f -- $1)"
 
+shopt -s nullglob
 for project in $(cd $patches; echo *);do
 	p="$(tr _ / <<<$project |sed -e 's;platform/;;g')"
 	[ "$p" == build ] && p=build/make
