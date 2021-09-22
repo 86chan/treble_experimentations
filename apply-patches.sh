@@ -8,6 +8,13 @@ shopt -s nullglob
 for project in $(cd $patches; echo *);do
 	p="$(tr _ / <<<$project |sed -e 's;platform/;;g')"
 	[ "$p" == build ] && p=build/make
+	
+	echo -E "*****************************************"
+	echo "argument: $1"
+	echo "patches: $patches"
+	echo "project: $project"
+	echo "pushd $p"
+	echo -E "*****************************************"
 	pushd $p
 	git clean -fdx; git reset --hard
 	for patch in $patches/$project/*.patch;do
